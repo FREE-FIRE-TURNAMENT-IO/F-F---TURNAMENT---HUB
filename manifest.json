@@ -1,0 +1,8 @@
+{
+  "name": "PRIME MIKU Tournament",
+  "short_name": "PRIME MIKU",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#060713",
+  "theme_color": "#070816"
+}

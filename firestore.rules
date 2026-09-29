@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    match /players/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid || isAdmin();
+      allow create: if signedIn() && request.auth.uid == uid;
+      allow update: if signedIn() && request.auth.uid == uid
+                    && !request.resource.data.diff(resource.data).affectedKeys()
+                      .hasAny(['walletBalance','role','banned']);
+      allow update, delete: if isAdmin();
+    }
+
+    match /matches/{matchId} {
+      allow read: if signedIn();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /matches/{matchId}/joins/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if signedIn() && request.auth.uid == uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /results/{matchId} {
+      allow read: if signedIn();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /supportThreads/{uid} {
+      allow read, create: if signedIn() && request.auth.uid == uid || isAdmin();
+      allow update: if signedIn() && (request.auth.uid == uid || isAdmin());
+      match /messages/{messageId} {
+        allow read, create: if signedIn() && (request.auth.uid == uid || isAdmin());
+      }
+    }
+
+    match /publicConfig/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // IMPORTANT:
+    // Do not allow players to directly write wallet balances, rewards,
+    // payment approval, withdrawal approval, admin claims, room credentials,
+    // or other privileged fields. Use a trusted server/Admin SDK function.
+  }
+}
