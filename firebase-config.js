@@ -1,11 +1,11 @@
-// DEMO PLACEHOLDER.
-// Copy firebase-config.example.js to this filename and add your Firebase Web App config.
-// Do not put Admin SDK credentials here.
+// Firebase Web App configuration
+// This is safe to use in the browser; protect your data with Firebase Security Rules.
 export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBs2jARy1XG2Fw9SP74UKnx19nWLjeGCY",
+  authDomain: "free-fire-hub-92574.firebaseapp.com",
+  projectId: "free-fire-hub-92574",
+  storageBucket: "free-fire-hub-92574.firebasestorage.app",
+  messagingSenderId: "183393806389",
+  appId: "1:183393806389:web:b37bef142bebf94cf9e97c",
+  measurementId: "G-GSXVB6JTW5"
 };

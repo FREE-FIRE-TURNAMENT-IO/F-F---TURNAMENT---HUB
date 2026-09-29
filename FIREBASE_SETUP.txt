@@ -1,0 +1,17 @@
+# Firebase-connected Prime Miku package
+
+Firebase Web App configuration has been inserted into `firebase-config.js`.
+
+Project:
+- Firebase project ID: `free-fire-hub-92574`
+
+Important:
+- This package does NOT turn the existing localStorage/demo player flows into a real-money deposit/withdrawal system.
+- Firestore/Auth still need to be integrated into the relevant application flows.
+- Configure Firebase Authentication and Firestore Security Rules in the Firebase Console before using persistent player/admin data.
+- Never upload a Firebase service-account/private-key JSON file to GitHub.
+
+GitHub Pages:
+1. Upload the contents of this package to the repository root.
+2. Keep `assets/bermuda-banner.svg` under `assets/`.
+3. Enable Settings -> Pages -> Deploy from branch -> `main` -> `/ (root)`.
